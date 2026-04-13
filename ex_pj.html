@@ -1,0 +1,857 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Parc Joly — Semur-en-Auxois | parcjolysemur.org</title>
+  <meta name="description" content="Parc Joly de Semur-en-Auxois : jardin d’environ 2,5 ha au pied des remparts, géré par l’ASJTS. Visites, contact, histoire et restauration." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --ink: #1a2822;
+      --muted: #4a5e52;
+      --cream: #e8f0ea;
+      --paper: #f4faf5;
+      --accent: #2d6a4f;
+      --accent-soft: #3a8c6a;
+      --moss: #5c7f62;
+      --canopy: #1b4332;
+      --line: rgba(27, 67, 50, 0.12);
+      --shadow: 0 12px 36px rgba(27, 67, 50, 0.1);
+      --radius: 14px;
+      --font-serif: "Cormorant Garamond", Georgia, serif;
+      --font-sans: "Source Sans 3", system-ui, sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: var(--font-sans);
+      font-size: 1.05rem;
+      line-height: 1.65;
+      color: var(--ink);
+      background-color: var(--cream);
+      background-image:
+        radial-gradient(ellipse 120% 80% at 0% 0%, rgba(45, 106, 79, 0.07), transparent 55%),
+        radial-gradient(ellipse 100% 60% at 100% 30%, rgba(92, 127, 98, 0.08), transparent 50%),
+        radial-gradient(ellipse 80% 50% at 50% 100%, rgba(180, 214, 178, 0.2), transparent 55%);
+      background-attachment: fixed;
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration-thickness: 1px;
+      text-underline-offset: 3px;
+    }
+
+    a:hover {
+      color: var(--accent-soft);
+    }
+
+    .wrap {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 1.25rem;
+    }
+
+    /* Header */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(232, 240, 234, 0.9);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .header-stack {
+      padding: 0.65rem 0 0.75rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .header-brand-row {
+      display: flex;
+      align-items: center;
+    }
+
+    .header-quick {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.5rem 0.85rem;
+      padding-top: 0.55rem;
+      border-top: 1px solid var(--line);
+    }
+
+    .quick-label {
+      margin: 0;
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--muted);
+      flex-shrink: 0;
+    }
+
+    .nav-quick {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.15rem 0.1rem;
+      flex: 1;
+      min-width: 0;
+    }
+
+    .nav-quick a {
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--ink);
+      text-decoration: none;
+      padding: 0.3rem 0.5rem;
+      border-radius: 6px;
+      white-space: nowrap;
+    }
+
+    .nav-quick a:hover {
+      background: rgba(45, 106, 79, 0.12);
+      color: var(--accent);
+    }
+
+    .nav-quick a.nav-quick-cta {
+      background: var(--accent);
+      color: var(--paper);
+      padding: 0.32rem 0.8rem;
+      border-radius: 999px;
+    }
+
+    .nav-quick a.nav-quick-cta:hover {
+      background: var(--accent-soft);
+      color: var(--paper);
+    }
+
+    .nav-quick-sep {
+      width: 1px;
+      height: 1rem;
+      background: var(--line);
+      margin: 0 0.25rem;
+      flex-shrink: 0;
+    }
+
+    /* Ancres : décalage sous l’en-tête fixe */
+    main section[id] {
+      scroll-margin-top: 5.75rem;
+    }
+
+    main section[id] article[id] {
+      scroll-margin-top: 6rem;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.85rem;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .brand:hover {
+      color: inherit;
+    }
+
+    .brand-logo {
+      width: 52px;
+      height: 52px;
+      border-radius: 12px;
+      background: linear-gradient(155deg, var(--accent) 0%, var(--canopy) 100%);
+      box-shadow: 0 4px 14px rgba(27, 67, 50, 0.25);
+      display: grid;
+      place-items: center;
+      color: var(--paper);
+      font-family: var(--font-serif);
+      font-weight: 700;
+      font-size: 1.1rem;
+      flex-shrink: 0;
+      overflow: hidden;
+    }
+
+    .brand-logo img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    .brand-text {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.15;
+    }
+
+    .brand-text strong {
+      font-family: var(--font-serif);
+      font-size: 1.35rem;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+    }
+
+    .brand-text span {
+      font-size: 0.8rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.4rem;
+      padding: 0.55rem 1.1rem;
+      border-radius: 999px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      font-family: inherit;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: var(--paper);
+    }
+
+    .btn-primary:hover {
+      background: var(--accent-soft);
+      color: var(--paper);
+    }
+
+    .btn-ghost {
+      background: transparent;
+      color: var(--accent);
+      border: 1.5px solid var(--accent);
+    }
+
+    .btn-ghost:hover {
+      background: rgba(45, 106, 79, 0.08);
+    }
+
+    /* Hero */
+    .hero {
+      position: relative;
+      overflow: hidden;
+      padding: 3.5rem 0 3rem;
+      text-align: center;
+      background:
+        radial-gradient(ellipse 85% 55% at 50% -5%, rgba(168, 206, 168, 0.35), transparent 58%),
+        radial-gradient(ellipse 70% 45% at 15% 40%, rgba(45, 106, 79, 0.08), transparent 50%),
+        radial-gradient(ellipse 60% 50% at 92% 60%, rgba(92, 127, 98, 0.12), transparent 45%),
+        linear-gradient(180deg, #f7fcf8 0%, var(--paper) 100%);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(180deg, rgba(244, 250, 245, 0.88) 8%, rgba(244, 250, 245, 0.74) 100%),
+        url("campagne photos E. Levy 17 mai 22/ParcJoly-mai2022_41.jpg") center/cover no-repeat;
+      z-index: 0;
+      opacity: 0.95;
+    }
+
+    .hero .wrap {
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero h1 {
+      font-family: var(--font-serif);
+      font-size: clamp(2.4rem, 6vw, 3.6rem);
+      font-weight: 700;
+      margin: 0 0 0.5rem;
+      letter-spacing: 0.02em;
+      line-height: 1.1;
+    }
+
+    .hero .tagline {
+      font-size: 1.15rem;
+      color: var(--muted);
+      max-width: 36rem;
+      margin: 0 auto 1.75rem;
+    }
+
+    .hero-domain {
+      display: inline-block;
+      font-size: 0.85rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--moss);
+      font-weight: 600;
+      margin-bottom: 0.25rem;
+    }
+
+    /* Quick actions */
+    .section {
+      padding: 3rem 0;
+    }
+
+    .section-photo-bg {
+      position: relative;
+      overflow: hidden;
+      isolation: isolate;
+    }
+
+    .section-photo-bg::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -2;
+      background: var(--section-photo) center/cover no-repeat;
+      transform: scale(1.02);
+    }
+
+    .section-photo-bg::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      background: linear-gradient(180deg, rgba(244, 250, 245, 0.9) 0%, rgba(244, 250, 245, 0.82) 100%);
+    }
+
+    .section-title {
+      font-family: var(--font-serif);
+      font-size: 2rem;
+      font-weight: 700;
+      margin: 0 0 0.35rem;
+      text-align: center;
+    }
+
+    .section-lead {
+      text-align: center;
+      color: var(--muted);
+      max-width: 32rem;
+      margin: 0 auto 2rem;
+      font-size: 1rem;
+    }
+
+    .info-panel {
+      max-width: 720px;
+      margin: 0 auto;
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 1.35rem 1.35rem 1.25rem;
+      box-shadow: var(--shadow);
+    }
+
+    .info-panel ul {
+      margin: 0.5rem 0 0;
+      padding-left: 1.2rem;
+      color: var(--muted);
+    }
+
+    .info-panel p {
+      margin: 0 0 0.85rem;
+      color: var(--muted);
+    }
+
+    .info-panel p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* Content columns */
+    .two-col {
+      display: grid;
+      gap: 2rem;
+    }
+
+    @media (min-width: 800px) {
+      .two-col {
+        grid-template-columns: 1fr 1fr;
+        align-items: start;
+      }
+    }
+
+    .prose h2 {
+      font-family: var(--font-serif);
+      font-size: 1.65rem;
+      margin: 0 0 0.75rem;
+    }
+
+    .prose p {
+      margin: 0 0 1rem;
+      color: var(--muted);
+    }
+
+    .prose p:last-child {
+      margin-bottom: 0;
+    }
+
+    .prose h3 {
+      font-family: var(--font-serif);
+      font-size: 1.35rem;
+      font-weight: 700;
+      margin: 0 0 0.65rem;
+      color: var(--ink);
+      line-height: 1.2;
+    }
+
+    /* Textes — trois volets */
+    .textes-grid {
+      display: grid;
+      gap: 1.25rem;
+      margin-top: 0.25rem;
+    }
+
+    @media (min-width: 900px) {
+      .textes-grid {
+        grid-template-columns: repeat(3, 1fr);
+        align-items: start;
+      }
+    }
+
+    .textes-block {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 1.35rem 1.25rem;
+      box-shadow: var(--shadow);
+    }
+
+    .textes-block .textes-kind {
+      display: block;
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--moss);
+      margin-bottom: 0.35rem;
+    }
+
+    /* Gallery */
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+      gap: 0.75rem;
+    }
+
+    .photo-groups {
+      display: grid;
+      gap: 1.5rem;
+    }
+
+    .photo-group {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 1rem;
+      box-shadow: var(--shadow);
+    }
+
+    .photo-group h3 {
+      margin: 0 0 0.75rem;
+      font-family: var(--font-serif);
+      font-size: 1.3rem;
+    }
+
+    .photo-group-meta {
+      margin: 0 0 1rem;
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    .gallery figure {
+      margin: 0;
+      border-radius: var(--radius);
+      overflow: hidden;
+      aspect-ratio: 4/3;
+      background: linear-gradient(145deg, #c5ddc8 0%, #9bc4a3 45%, #6b9b7a 100%);
+      border: 1px solid rgba(27, 67, 50, 0.15);
+    }
+
+    .gallery figcaption {
+      display: none;
+    }
+
+    .gallery img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .gallery a {
+      display: block;
+      width: 100%;
+      height: 100%;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .gallery a:hover img {
+      transform: scale(1.03);
+      transition: transform 180ms ease;
+    }
+
+    .ph {
+      width: 100%;
+      height: 100%;
+      display: grid;
+      place-items: center;
+      color: var(--muted);
+      font-size: 0.8rem;
+      text-align: center;
+      padding: 0.5rem;
+    }
+
+    /* Map / access */
+    .map-box {
+      border-radius: var(--radius);
+      overflow: hidden;
+      border: 1px solid var(--line);
+      background: var(--paper);
+      min-height: 280px;
+      box-shadow: var(--shadow);
+    }
+
+    .map-box iframe {
+      width: 100%;
+      height: 320px;
+      border: 0;
+      display: block;
+    }
+
+    .map-fallback {
+      padding: 2rem;
+      text-align: center;
+      color: var(--muted);
+    }
+
+    /* Partners */
+    .partners {
+      background: linear-gradient(180deg, rgba(232, 240, 234, 0.6) 0%, var(--paper) 40%, var(--paper) 100%);
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .partner-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.25rem;
+      justify-content: center;
+      align-items: center;
+      padding: 2rem 0;
+    }
+
+    .partner-slot {
+      width: 120px;
+      height: 64px;
+      border: 1px dashed var(--line);
+      border-radius: 8px;
+      display: grid;
+      place-items: center;
+      font-size: 0.75rem;
+      color: var(--muted);
+      text-align: center;
+      padding: 0.35rem;
+      background: var(--cream);
+    }
+
+    .partner-slot img {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+    }
+
+    /* Footer */
+    .site-footer {
+      padding: 2.5rem 0 2rem;
+      text-align: center;
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+
+    .site-footer .social {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      margin: 1rem 0;
+      flex-wrap: wrap;
+    }
+
+    .site-footer .social a {
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap header-stack">
+      <div class="header-brand-row">
+        <a class="brand" href="#top">
+          <div class="brand-logo" aria-hidden="true">
+            <img src="logo-parc-joly.png" alt="Logo Parc Joly" loading="lazy" />
+          </div>
+          <div class="brand-text">
+            <strong>Parc Joly</strong>
+            <span>Semur-en-Auxois</span>
+          </div>
+        </a>
+      </div>
+      <div class="header-quick">
+        <p class="quick-label" id="nav-acces-rapide">Accès rapide</p>
+        <nav class="nav-quick" aria-labelledby="nav-acces-rapide">
+          <a href="#adhesion">Adhésion</a>
+          <a href="#visites">Visites</a>
+          <a href="#texts">Textes</a>
+          <a href="#agenda">Agenda</a>
+          <a href="#acces">Plan d’accès</a>
+          <a href="#liens">Liens utiles</a>
+          <span class="nav-quick-sep" aria-hidden="true"></span>
+          <a href="#textes">Textes</a>
+          <a href="#photos">Photos</a>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="wrap">
+        <p class="hero-domain">parcjolysemur.org</p>
+        <h1>Parc Joly — Semur-en-Auxois</h1>
+        <p class="tagline">
+          Environ <strong>2,5&nbsp;ha</strong> au pied des remparts nord, vestige d’un grand parc privé du XVIII<sup>e</sup>–XIX<sup>e</sup> siècle. Le site est <strong>privé</strong>, animé par l’<abbr title="Association de sauvegarde des jardins et terrasses de Semur-en-Auxois">ASJTS</abbr> (créée en septembre&nbsp;2020). Concerts et événements culturels y sont régulièrement proposés.
+        </p>
+        <p class="tagline" style="margin-top: -0.5rem; font-size: 1rem;">
+          Informations détaillées (horaires à jour, description) : <a href="https://www.parcsetjardins-bourgogne.com/jardins/parc-joly-de-semur-en-auxois" rel="noopener noreferrer">fiche officielle — Association des parcs et jardins de Bourgogne</a>.
+        </p>
+        <a class="btn btn-primary" href="#adhesion">Soutenir le parc (adhésion)</a>
+        &nbsp;
+      </div>
+    </section>
+
+    <section class="section" id="contact" aria-labelledby="contact-title">
+      <div class="wrap">
+        <div class="info-panel prose">
+          <p><strong>Adresse du parc</strong><br />
+            2&nbsp;bis rue de Paris / Pont Joly, 21140 Semur-en-Auxois, Côte-d’Or</p>
+          <ul>
+            <li>Téléphone : <a href="tel:+33675257798">06&nbsp;75&nbsp;25&nbsp;77&nbsp;98</a> (visites sur rendez-vous)</li>
+            <li>Courriel : <a href="mailto:parcjolysemur@gmail.com">parcjolysemur@gmail.com</a></li>
+          </ul>
+          <p style="margin-top: 1rem; margin-bottom: 0; font-size: 0.95rem;">
+            Source des horaires et du descriptif : <a href="https://www.parcsetjardins-bourgogne.com/jardins/parc-joly-de-semur-en-auxois" rel="noopener noreferrer">Parc Joly sur parcsetjardins-bourgogne.com</a>.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="adhesion" aria-labelledby="adhesion-title" style="background: var(--paper); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);">
+      <div class="wrap">
+        <h2 id="adhesion-title" class="section-title">Adhésion</h2>
+        <p class="section-lead">Les adhérents soutiennent l’entretien, la restauration du site et la vie du parc associatif (plus de 500 adhérents mentionnés sur la fiche AJPB).</p>
+        <div class="info-panel prose" style="text-align: center;">
+          <p style="margin-bottom: 1rem;">Cotisation et bulletin : à finaliser sur HelloAsso lorsque la campagne sera prête.</p>
+          <a class="btn btn-primary" href="https://www.helloasso.com" rel="noopener noreferrer" target="_blank">HelloAsso — lien à préciser</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="visites" aria-labelledby="visites-title">
+      <div class="wrap">
+        <h2 id="visites-title" class="section-title">Visites</h2>
+        <p class="section-lead">Les jours et créneaux d’ouverture <strong>changent selon la saison</strong> ; la référence à jour figure sur la fiche AJPB.</p>
+        <div class="info-panel prose">
+          <p><strong>Ouverture au public</strong> (d’après la fiche AJPB) : visites lors d’événements tels que les <em>Rendez-vous aux jardins</em> et les <em>Journées du patrimoine</em>, visites libres selon calendrier publié, et <strong>sur rendez-vous</strong> au 06&nbsp;75&nbsp;25&nbsp;77&nbsp;98 pour les groupes ou créneaux spécifiques.</p>
+          <p><strong>Durée</strong> : environ <strong>1&nbsp;h</strong> le long d’un circuit fléché ; plan disponible sur place.</p>
+          <p><strong>Tarif</strong> : visite libre, <strong>participation libre</strong> (gratuit).</p>
+          <p><strong>Conditions</strong> : chien accepté <strong>en laisse</strong> ; commodités sur place (voir fiche AJPB).</p>
+          <p style="margin-bottom: 0;"><a class="btn btn-ghost" href="https://www.parcsetjardins-bourgogne.com/jardins/parc-joly-de-semur-en-auxois" rel="noopener noreferrer">Voir horaires et statut « ouvert / fermé » sur AJPB</a></p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-photo-bg" id="textes" aria-labelledby="textes-title" style="--section-photo: url('campagne photos E. Levy 17 mai 22/ParcJoly-mai2022_53.jpg');">
+      <div class="wrap">
+        <h2 id="textes-title" class="section-title">Textes</h2>
+        <p class="section-lead">
+          Synthèses établies à partir de la <a href="https://www.parcsetjardins-bourgogne.com/jardins/parc-joly-de-semur-en-auxois" rel="noopener noreferrer">fiche « Parc Joly de Semur-en-Auxois »</a> de l’Association des parcs et jardins de Bourgogne (AJPB), complétées plus tard par vos propres publications.
+        </p>
+        <div class="textes-grid prose">
+          <article class="textes-block" id="textes-lettres">
+            <span class="textes-kind">Lettres</span>
+            <h3>Lettres &amp; prises de parole</h3>
+            <p>
+              Espace réservé aux lettres ouvertes, appels et textes officiels de l’association. Le contenu sera ajouté ici lorsque vous en aurez publié.
+            </p>
+          </article>
+          <article class="textes-block" id="textes-histoire">
+            <span class="textes-kind">Histoire</span>
+            <h3>Histoire du parc</h3>
+            <p>
+              Le parc actuel n’est qu’une partie d’un vaste parc privé créé aux XVIII<sup>e</sup> et XIX<sup>e</sup> siècles. La famille <strong>Joly de Saint-Florent</strong>, dijonnaise et proche des ducs de Bourgogne, s’installa à Semur ; le pont Joly sur l’Armançon fut financé par les États de Bourgogne ; la première pierre fut posée en 1779 par Antoine-Nicolas Joly.
+            </p>
+            <p>
+              En 1815, un clos (vignes, jardins, bâtiments, colombier) fut acheté rive opposée ; le parc fut aménagé et agrandi jusqu’à plus de 5&nbsp;ha entre 1831 et 1838. Une passerelle sur l’Armançon fut emportée par une crue en 1856. À partir de 1872, le morcellement de la propriété mena au partage du parc en lots ; <strong>Eugène Bréon</strong> réunit une grande partie du « Grand Jardin », entretenu par des jardiniers jusqu’aux années 1940. Après-guerre, huit familles en indivision ; le site fut vendu en novembre 2001.
+            </p>
+            <p style="margin-bottom: 0;">
+              Aujourd’hui, le lieu offre une vue sur Semur, avec bois et ancien verger, vallon, terrasses surplombant l’Armançon, esplanade, grotte, marres et cascadelle, pigeonnier — un ensemble à la fois proche de la ville et encore très nature.
+            </p>
+          </article>
+          <article class="textes-block" id="textes-restauration">
+            <span class="textes-kind">Projet</span>
+            <h3>Restauration — récit du projet</h3>
+            <p>
+              L’<strong>ASJTS</strong> (association de sauvegarde des jardins et terrasses de Semur-en-Auxois) a été créée en <strong>septembre 2020</strong> pour prendre en charge la restauration sous convention avec les propriétaires. Les bénévoles défrichent, sécurisent le terrain, enlèvent les arbres morts, <strong>remontent les murs en pierres sèches</strong>, curent les marres.
+            </p>
+            <p>
+              Le parc accueille des <strong>groupes</strong> et des <strong>adhérents</strong> ; des <strong>concerts</strong> et événements culturels y sont organisés. Un <strong>label Fondation du Patrimoine</strong> a été obtenu ; une souscription a porté sur la réhabilitation du <strong>pigeonnier</strong> (travaux évoqués pour 2023 sur la fiche AJPB).
+            </p>
+            <p style="margin-bottom: 0;">
+              Pour le détail des opérations et l’appel aux dons : <a href="https://www.fondation-patrimoine.org/les-projets/parc-joly-a-semur-en-auxois/80104" rel="noopener noreferrer">projet Parc Joly — Fondation du Patrimoine</a>.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-photo-bg" id="agenda" aria-labelledby="agenda-title" style="--section-photo: url('Photo parc joly Boucher LIGHT/L1020158.jpg'); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);">
+      <div class="wrap">
+        <h2 id="agenda-title" class="section-title">Agenda</h2>
+        <p class="section-lead">Les dates d’ouverture au public et les événements du réseau sont annoncés sur le site de l’AJPB (menu «&nbsp;Agenda&nbsp;»).</p>
+        <div class="info-panel prose" style="text-align: center;">
+          <p style="margin-bottom: 1rem;">Pour le Parc Joly, croisez aussi les horaires indiqués sur la <a href="https://www.parcsetjardins-bourgogne.com/jardins/parc-joly-de-semur-en-auxois" rel="noopener noreferrer">fiche du jardin</a>.</p>
+          <a class="btn btn-primary" href="https://www.parcsetjardins-bourgogne.com/" rel="noopener noreferrer">Site — Association des parcs et jardins de Bourgogne</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-photo-bg" id="acces" aria-labelledby="acces-title" style="--section-photo: url('campagne photos E. Levy 17 mai 22/ParcJoly-mai2022_36.jpg');">
+      <div class="wrap two-col" style="align-items: stretch;">
+        <div>
+          <h2 id="acces-title" class="section-title" style="text-align: left; margin-bottom: 0.75rem;">Plan d’accès</h2>
+          <p class="prose" style="color: var(--muted); margin-top: 0;">
+            <strong>Adresse</strong> : 2&nbsp;bis rue de Paris / Pont Joly, 21140 Semur-en-Auxois.<br />
+            <strong>Coordonnées GPS</strong> (fiche AJPB) : 47,49153&nbsp;N, 4,33089&nbsp;E.
+          </p>
+          <p class="prose" style="color: var(--muted); font-size: 0.98rem;">
+            Semur-en-Auxois se situe en Côte-d’Or ; le parc est au nord de la cité médiévale, près du pont Joly. Stationnement et transports : voir l’<a href="https://www.tourisme-semur.fr/" rel="noopener noreferrer">office de tourisme de Semur-en-Auxois</a> ou le site de la <a href="https://www.ville-semur-en-auxois.fr/" rel="noopener noreferrer">mairie</a>.
+          </p>
+          <p class="prose" style="margin-bottom: 0;">
+            <a href="https://www.openstreetmap.org/?mlat=47.49153&amp;mlon=4.33089#map=17/47.49153/4.33089" rel="noopener noreferrer">Ouvrir la carte sur OpenStreetMap</a>
+          </p>
+        </div>
+        <div class="map-box">
+          <iframe
+            title="Emplacement du Parc Joly — Semur-en-Auxois"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            src="https://www.openstreetmap.org/export/embed.html?bbox=4.318%2C47.486%2C4.344%2C47.497&amp;layer=mapnik&amp;marker=47.49153%2C4.33089"
+          ></iframe>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="photos" aria-labelledby="photos-title">
+      <div class="wrap">
+        <h2 id="photos-title" class="section-title">Photos</h2>
+        <p class="section-lead">Cliquez sur une photo pour ouvrir le fichier original, classé par photographe.</p>
+        <div class="photo-groups">
+          <article class="photo-group" id="photos-bordes">
+            <h3>David Bordes</h3>
+            <p class="photo-group-meta">Dossier : <code>photos David Bordes</code></p>
+            <div class="gallery">
+              <figure><a href="photos David Bordes/IMG_2510.JPG" target="_blank"><img src="photos David Bordes/IMG_2510.JPG" alt="Parc Joly — David Bordes IMG 2510" loading="lazy" /></a></figure>
+              <figure><a href="photos David Bordes/IMG_2511.JPG" target="_blank"><img src="photos David Bordes/IMG_2511.JPG" alt="Parc Joly — David Bordes IMG 2511" loading="lazy" /></a></figure>
+              <figure><a href="photos David Bordes/IMG_2567.jpg" target="_blank"><img src="photos David Bordes/IMG_2567.jpg" alt="Parc Joly — David Bordes IMG 2567" loading="lazy" /></a></figure>
+              <figure><a href="photos David Bordes/IMG_2569.jpg" target="_blank"><img src="photos David Bordes/IMG_2569.jpg" alt="Parc Joly — David Bordes IMG 2569" loading="lazy" /></a></figure>
+            </div>
+          </article>
+
+          <article class="photo-group" id="photos-boucher">
+            <h3>Boucher</h3>
+            <p class="photo-group-meta">Dossier : <code>Photo parc joly Boucher LIGHT</code></p>
+            <div class="gallery">
+              <figure><a href="Photo parc joly Boucher LIGHT/L1020081.jpg" target="_blank"><img src="Photo parc joly Boucher LIGHT/L1020081.jpg" alt="Parc Joly — Boucher L1020081" loading="lazy" /></a></figure>
+              <figure><a href="Photo parc joly Boucher LIGHT/L1020094.jpg" target="_blank"><img src="Photo parc joly Boucher LIGHT/L1020094.jpg" alt="Parc Joly — Boucher L1020094" loading="lazy" /></a></figure>
+              <figure><a href="Photo parc joly Boucher LIGHT/L1020118.jpg" target="_blank"><img src="Photo parc joly Boucher LIGHT/L1020118.jpg" alt="Parc Joly — Boucher L1020118" loading="lazy" /></a></figure>
+              <figure><a href="Photo parc joly Boucher LIGHT/L1020134.jpg" target="_blank"><img src="Photo parc joly Boucher LIGHT/L1020134.jpg" alt="Parc Joly — Boucher L1020134" loading="lazy" /></a></figure>
+            </div>
+          </article>
+
+          <article class="photo-group" id="photos-levy">
+            <h3>E. Levy</h3>
+            <p class="photo-group-meta">Dossier : <code>campagne photos E. Levy 17 mai 22</code></p>
+            <div class="gallery">
+              <figure><a href="campagne photos E. Levy 17 mai 22/ParcJoly-mai2022_03.jpg" target="_blank"><img src="campagne photos E. Levy 17 mai 22/ParcJoly-mai2022_03.jpg" alt="Parc Joly — E. Levy 03" loading="lazy" /></a></figure>
+              <figure><a href="campagne photos E. Levy 17 mai 22/ParcJoly-mai2022_20.jpg" target="_blank"><img src="campagne photos E. Levy 17 mai 22/ParcJoly-mai2022_20.jpg" alt="Parc Joly — E. Levy 20" loading="lazy" /></a></figure>
+              <figure><a href="campagne photos E. Levy 17 mai 22/ParcJoly-mai2022_41.jpg" target="_blank"><img src="campagne photos E. Levy 17 mai 22/ParcJoly-mai2022_41.jpg" alt="Parc Joly — E. Levy 41" loading="lazy" /></a></figure>
+              <figure><a href="campagne photos E. Levy 17 mai 22/ParcJoly-mai2022_62.jpg" target="_blank"><img src="campagne photos E. Levy 17 mai 22/ParcJoly-mai2022_62.jpg" alt="Parc Joly — E. Levy 62" loading="lazy" /></a></figure>
+            </div>
+          </article>
+
+          <article class="photo-group" id="photos-naudet">
+            <h3>Françoise Naudet</h3>
+            <p class="photo-group-meta">Dossier : <code>Photos Françoise Naudet Mars 2021</code></p>
+            <div class="gallery">
+              <figure><a href="Photos Françoise Naudet Mars 2021/IMG_1340.JPG" target="_blank"><img src="Photos Françoise Naudet Mars 2021/IMG_1340.JPG" alt="Parc Joly — Françoise Naudet IMG 1340" loading="lazy" /></a></figure>
+              <figure><a href="Photos Françoise Naudet Mars 2021/IMG_1351.JPG" target="_blank"><img src="Photos Françoise Naudet Mars 2021/IMG_1351.JPG" alt="Parc Joly — Françoise Naudet IMG 1351" loading="lazy" /></a></figure>
+              <figure><a href="Photos Françoise Naudet Mars 2021/IMG_1361.JPG" target="_blank"><img src="Photos Françoise Naudet Mars 2021/IMG_1361.JPG" alt="Parc Joly — Françoise Naudet IMG 1361" loading="lazy" /></a></figure>
+              <figure><a href="Photos Françoise Naudet Mars 2021/IMG_1369.JPG" target="_blank"><img src="Photos Françoise Naudet Mars 2021/IMG_1369.JPG" alt="Parc Joly — Françoise Naudet IMG 1369" loading="lazy" /></a></figure>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="partners" id="liens" aria-labelledby="liens-title">
+      <div class="wrap">
+        <h2 id="liens-title" class="section-title" style="padding-top: 0.5rem;">Liens &amp; partenaires</h2>
+        <p class="section-lead">Liens utiles, partenaires et identité visuelle du Parc Joly.</p>
+        <div class="partner-grid">
+          <a class="partner-slot" href="210607_parc-joly vect (1).pdf" target="_blank" title="Logo Parc Joly (fichier source PDF)">
+            <img src="logo-parc-joly.png" alt="Logo Parc Joly" loading="lazy" />
+          </a>
+          <a class="partner-slot" href="https://www.parcsetjardins-bourgogne.com/" rel="noopener noreferrer" target="_blank" title="Association des parcs et jardins de Bourgogne">
+            Logo<br />AJPB
+          </a>
+          <div class="partner-slot">Ville de<br />Semur</div>
+          <div class="partner-slot">Partenaire<br />2</div>
+          <div class="partner-slot">Partenaire<br />3</div>
+          <div class="partner-slot">Fournisseur /<br />mécène</div>
+        </div>
+        <p style="text-align: center; max-width: 40rem; margin: 0 auto 2rem; color: var(--muted); font-size: 0.95rem;">
+          Lien utile : <a href="https://www.parcsetjardins-bourgogne.com/jardins/parc-joly-de-semur-en-auxois" rel="noopener noreferrer">Fiche Parc Joly (AJPB)</a> —
+          <a href="https://www.fondation-patrimoine.org/les-projets/parc-joly-a-semur-en-auxois/80104" rel="noopener noreferrer">Fondation du Patrimoine</a>
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <p><strong>Parc Joly</strong> — Semur-en-Auxois · gestion associative <strong>ASJTS</strong></p>
+      <p>Site : <a href="https://parcjolysemur.org">parcjolysemur.org</a> — hébergement à définir.</p>
+      <div class="social">
+        <a href="#">Facebook</a>
+        <a href="#">Instagram</a>
+      </div>
+      <p><a href="#">Mentions légales</a> · <a href="#">Politique de confidentialité</a></p>
+      <p style="font-size: 0.8rem; margin-top: 1.5rem;">Informations patrimoniales et pratiques : se référer à la <a href="https://www.parcsetjardins-bourgogne.com/jardins/parc-joly-de-semur-en-auxois" rel="noopener noreferrer">fiche AJPB</a> pour toute donnée officielle à jour.</p>
+    </div>
+  </footer>
+</body>
+</html>
